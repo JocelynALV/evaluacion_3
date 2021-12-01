@@ -3,11 +3,11 @@ package Modelo;
 
 /**
  *
- * @author Cristian 
+ * @author JocelioCalzon
  */
 public class Usuario {
     
-    private int IDusuario;
+     private int IDusuario;
     private String nombre;
     private String apellido;
     private String username;
@@ -63,5 +63,5 @@ public class Usuario {
     public void setPassword(String password) {
         this.password = password;
     }
-
+    
 }

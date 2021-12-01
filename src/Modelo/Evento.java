@@ -5,22 +5,22 @@ import java.util.Date;
 
 /**
  *
- * @author Cristian
+ * @author Jocelyn
  */
 public class Evento {
     
     private int IDevento;
     private String nombre;
-    private Date echa;
+    private Date fecha;
     private String nota;
 
     public Evento() {
     }
 
-    public Evento(int IDevento, String nombre, Date echa, String nota) {
+    public Evento(int IDevento, String nombre, Date fecha, String nota) {
         this.IDevento = IDevento;
         this.nombre = nombre;
-        this.echa = echa;
+        this.fecha = fecha;
         this.nota = nota;
     }
 
@@ -40,12 +40,12 @@ public class Evento {
         this.nombre = nombre;
     }
 
-    public Date getEcha() {
-        return echa;
+    public Date getFecha() {
+        return fecha;
     }
 
-    public void setEcha(Date echa) {
-        this.echa = echa;
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 
     public String getNota() {
