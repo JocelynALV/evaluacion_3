@@ -17,8 +17,10 @@ public class repositorioUser {
     
     private Conexion conectar;
     
-    repositorioUser(Conexion conexion){
+
+    public repositorioUser() {
         this.conectar = new Conexion();
+
     }
     
     
@@ -92,21 +94,21 @@ public class repositorioUser {
         }
     }
     
-    public Usuario buscarUsuario(int IDusuario){
+    public Usuario buscarUsuario(String username){
         
         Usuario usuario = new Usuario();
         
         try {
             Connection con = conectar.ObtConexion();
             
-            String query = "SELECT IDusuario,nombre,apellido,username,password WHERE IDusuario = ?";
+            String query = "SELECT * FROM Usuario WHERE username = ?";
             PreparedStatement stmt = con.prepareStatement(query);
-            stmt.setInt(1, IDusuario);
+            stmt.setString(1, username);
             
             ResultSet resultado = stmt.executeQuery(); // ResulSet trae un SELECT
             
             if (resultado.next()) { //Si existe el dato muestralo, si el SELECT no existe pasa de largo.
-                usuario.setIDusuario(resultado.getShort("IDusuario"));
+                usuario.setIDusuario(resultado.getInt("IDusuario"));
                 usuario.setNombre(resultado.getString("nombre"));
                 usuario.setApellido(resultado.getString("apellido"));
                 usuario.setUsername(resultado.getString("username"));
@@ -118,7 +120,7 @@ public class repositorioUser {
             
         } catch (SQLException e) {
             
-            System.out.println("Error en SQL al Listar USER"+e.getMessage());
+            System.out.println("Error en SQL al  buscar USER "+e.getMessage());
         }
         return usuario;
     }

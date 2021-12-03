@@ -19,7 +19,7 @@ public class RepositorioEvento {
     
     private Conexion conectar;
     
-    RepositorioEvento(Conexion conexion){
+    public RepositorioEvento(){
         this.conectar = new Conexion();
     }
     
@@ -32,11 +32,12 @@ public class RepositorioEvento {
             Connection con = conectar.ObtConexion();
             date = evento.getFecha();
             
-            String query = "INSERT INTO evento (nombre,fecha,nota) VALUES (?,?,?) ";
+            String query = "INSERT INTO evento (nombre,fecha,nota,IDusuario) VALUES (?,?,?,?) ";
             PreparedStatement stmt = con.prepareStatement(query);
             stmt.setString(1, evento.getNombre());
             stmt.setDate(2, new java.sql.Date(date.getTime()));
             stmt.setString(3, evento.getNota());
+            stmt.setInt(4, evento.getIDusuario());
             
             stmt.executeUpdate();
             stmt.close();

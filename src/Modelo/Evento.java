@@ -13,15 +13,18 @@ public class Evento {
     private String nombre;
     private Date fecha;
     private String nota;
+    private int IDusuario; 
+    private Usuario usuario; 
 
     public Evento() {
     }
 
-    public Evento(int IDevento, String nombre, Date fecha, String nota) {
+    public Evento(String nombre, Date fecha, String nota, int IDusuario) {
         this.IDevento = IDevento;
         this.nombre = nombre;
         this.fecha = fecha;
         this.nota = nota;
+        this.IDusuario = IDusuario;
     }
 
     public int getIDevento() {
@@ -55,5 +58,25 @@ public class Evento {
     public void setNota(String nota) {
         this.nota = nota;
     }
+
+    public int getIDusuario() {
+        return IDusuario;
+    }
+
+    public void setIDusuario(int IDusuario) {
+        this.IDusuario = IDusuario;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+    
+    
+
+    
     
 }

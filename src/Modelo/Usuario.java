@@ -7,7 +7,7 @@ package Modelo;
  */
 public class Usuario {
     
-     private int IDusuario;
+    private int IDusuario;
     private String nombre;
     private String apellido;
     private String username;
