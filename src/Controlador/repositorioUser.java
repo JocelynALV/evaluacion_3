@@ -114,9 +114,12 @@ public class repositorioUser {
                 usuario.setUsername(resultado.getString("username"));
                 usuario.setPassword(resultado.getNString("password"));
             }
-            resultado.close();
+            else  {
+                usuario = null; // si no sé encuentra usuario el metodo retornara null, no un usuario vacio cómo lo estaba haciendo (Error que nos lanzo)
+            }
+            resultado.close(); 
             stmt.close();
-            con.close();
+            con.close();    
             
         } catch (SQLException e) {
             

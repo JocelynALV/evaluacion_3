@@ -183,6 +183,7 @@ public class Inicio extends javax.swing.JFrame {
         
         if(user == true){
             new menu().setVisible(true);
+            dispose();
         }else{
             JOptionPane.showMessageDialog(this, "Usuario y/o contraseña incorrectos", "validacion", 1);
         }
@@ -195,6 +196,7 @@ public class Inicio extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         new Registro().setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jtx_usuarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtx_usuarioFocusGained

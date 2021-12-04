@@ -5,6 +5,9 @@
  */
 package vista;
 
+import Controlador.RepositorioEvento;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author JocelioCalzon
@@ -14,9 +17,13 @@ public class EliminarEvento extends javax.swing.JFrame {
     /**
      * Creates new form EliminarEvento
      */
+    
+    private RepositorioEvento repositorioEvento;
+    
     public EliminarEvento() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.repositorioEvento = new RepositorioEvento();
     }
 
     /**
@@ -31,6 +38,13 @@ public class EliminarEvento extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jtx_nombre = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JSeparator();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jlb_fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -51,6 +65,61 @@ public class EliminarEvento extends javax.swing.JFrame {
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, -1, -1));
         getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 620, 20));
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 102, 102));
+        jLabel3.setText("Debes ingresar el nombre del evento que deseas eliminar :");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel4.setText("Nombre Evento :");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, -1, -1));
+
+        jtx_nombre.setBackground(new java.awt.Color(204, 255, 255));
+        jtx_nombre.setForeground(new java.awt.Color(102, 102, 102));
+        jtx_nombre.setText("Ingresa nombre del evento");
+        jtx_nombre.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jtx_nombreFocusGained(evt);
+            }
+        });
+        jtx_nombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtx_nombreActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jtx_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, 360, 30));
+
+        jButton1.setBackground(new java.awt.Color(0, 153, 153));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/boton-eliminar.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 240, 50, 30));
+        getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 610, 10));
+
+        jButton2.setBackground(new java.awt.Color(0, 153, 153));
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("Regresar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 390, -1, -1));
+
+        jButton3.setBackground(new java.awt.Color(0, 153, 153));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/salida-de-emergencia.png"))); // NOI18N
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 430, 80, 30));
+
         jlb_fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/624986.jpg"))); // NOI18N
         getContentPane().add(jlb_fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 613, 489));
 
@@ -60,6 +129,47 @@ public class EliminarEvento extends javax.swing.JFrame {
     private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
         // TODO add your handling code here:
     }//GEN-LAST:event_formFocusGained
+
+    private void jtx_nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtx_nombreActionPerformed
+        // TODO add your handling code here
+    }//GEN-LAST:event_jtx_nombreActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String nombre = this.jtx_nombre.getText();
+        if(nombre.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Debes ingresar un nombre", "Validacion", 1);
+            this.jtx_nombre.requestFocus();
+            return;
+        }
+        
+        
+        int respuesta = JOptionPane.showConfirmDialog(this, "¿Realmente vas a eliminar el Evento?");
+        if(respuesta == 0){
+            boolean estado = repositorioEvento.eliminarEvento(nombre);
+            if( estado == true){
+                JOptionPane.showMessageDialog(this, "Evento eliminado con exito", "Aviso", 1);
+            } else{
+                JOptionPane.showMessageDialog(this, "Error al eliminar el evento", "Aviso", 1);
+            }
+        }if(respuesta == 1){
+            JOptionPane.showMessageDialog(this, "No se elimino Evento", "Aviso", 1);
+        } new EliminarEvento().setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        new menu().setVisible(true);
+        dispose();
+
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        System.exit(0);
+
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jtx_nombreFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtx_nombreFocusGained
+        this.jtx_nombre.setText("");
+    }//GEN-LAST:event_jtx_nombreFocusGained
 
     /**
      * @param args the command line arguments
@@ -97,9 +207,16 @@ public class EliminarEvento extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel jlb_fondo;
+    private javax.swing.JTextField jtx_nombre;
     // End of variables declaration//GEN-END:variables
 }

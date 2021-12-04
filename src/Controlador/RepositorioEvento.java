@@ -113,7 +113,7 @@ public class RepositorioEvento {
         try {
             
             Connection con = conectar.ObtConexion();
-            String query = "SELECT IDfecha,nombre,fecha,nota WHERE IDevento = ?";
+            String query = "SELECT IDevento,nombre,fecha,nota FROM evento WHERE IDevento = ?";
             PreparedStatement stmt = con.prepareStatement(query);
             stmt.setInt(1, IDevento);
             
@@ -137,13 +137,46 @@ public class RepositorioEvento {
         return evento;
     }
     
+    
+    public List<Evento> buscarTodosID(int IDusuario){
+        List<Evento> eventos = new ArrayList<>();
+        
+        try {
+            
+            Connection con = conectar.ObtConexion();
+            String query = "SELECT IDevento,nombre,fecha,nota FROM evento WHERE IDusuario = ? ORDER BY fecha";
+            PreparedStatement stmt = con.prepareStatement(query);
+            stmt.setInt(1, IDusuario);
+           
+            ResultSet resultado = stmt.executeQuery();
+            
+            while (resultado.next()){
+                Evento evento = new Evento();
+                evento.setIDevento(resultado.getShort("IDevento"));
+                evento.setNombre(resultado.getString("nombre"));
+                evento.setFecha(resultado.getDate("fecha"));
+                evento.setNota(resultado.getString("nota"));
+                
+                eventos.add(evento);
+            }
+            resultado.close();
+            stmt.close();
+            con.close();
+            
+        } catch (SQLException e) {
+            
+            System.out.println("Error en SQL al Listar"+e.getMessage());
+        }
+        return eventos;
+    }
+    
     public List<Evento> buscarTodos(){
         List<Evento> eventos = new ArrayList<>();
         
         try {
             
             Connection con = conectar.ObtConexion();
-            String query = "SELECT IDfecha,nombre,fecha,nota FROM evento ORDER BY fecha";
+            String query = "SELECT IDevento,nombre,fecha,nota FROM evento ORDER BY fecha";
             PreparedStatement stmt = con.prepareStatement(query);
            
             ResultSet resultado = stmt.executeQuery();
@@ -169,3 +202,5 @@ public class RepositorioEvento {
     }
     
 }
+
+    
